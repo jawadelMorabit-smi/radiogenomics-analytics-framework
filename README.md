@@ -122,13 +122,21 @@ sections:
 
 ### 1. `jaouad-el-morabit.ipynb` — 3D CNN (executed ✅)
 
+> **Provenance:** developed from the assignment notebook provided by the
+> professor, [**BIAM TP02**](https://www.kaggle.com/code/hichamamakdouf/biam-tp02)
+> (by H. AMAKDOUF, itself based on a public competition kernel).
+
 Complete deep-learning pipeline in 18 sections: DICOM loading → 3D volumes →
 3D CNN → evaluation, with 5 optimizations tested one by one (class weighting,
 threshold tuning, best-slices + z-score normalization, data augmentation,
 5-fold cross-validation) plus two final levers (multi-modality fusion,
 ensembling). All cells executed on Kaggle with outputs and figures embedded.
+Also viewable on [Kaggle](https://www.kaggle.com/code/jaouadelmorabit/jaouad-el-morabit).
 
 ### 2. `radiogenomics-research.ipynb` — Radiomics framework
+
+> **Provenance:** original competition notebook, available on
+> [Kaggle](https://www.kaggle.com/code/jaouadelmorabit/radiogenomics-research).
 
 The alternative interpretable approach (sections A–J described below). This
 is the notebook source; run it once against the dataset to regenerate outputs.

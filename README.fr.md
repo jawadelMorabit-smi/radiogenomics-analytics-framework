@@ -125,14 +125,22 @@ gliomes de haut grade — la cible de la tâche de prédiction.*
 
 ### 1. `jaouad-el-morabit.ipynb` — CNN 3D (exécuté ✅)
 
+> **Provenance :** développé à partir du notebook d'assignment fourni par le
+> professeur [**BIAM TP02**](https://www.kaggle.com/code/hichamamakdouf/biam-tp02)
+> (par H. AMAKDOUF, lui-même basé sur un kernel public de la compétition).
+
 Pipeline complet de deep learning en 18 sections : chargement DICOM → volumes
 3D → CNN 3D → évaluation, avec 5 optimisations testées une par une
 (pondération des classes, seuil de décision, meilleures coupes + z-score,
 augmentation de données, validation croisée 5 blocs) puis deux leviers finaux
 (fusion multi-modalités, ensembling). Toutes les cellules exécutées sur Kaggle,
-sorties et figures intégrées.
+sorties et figures intégrées. Consultable aussi sur
+[Kaggle](https://www.kaggle.com/code/jaouadelmorabit/jaouad-el-morabit).
 
 ### 2. `radiogenomics-research.ipynb` — Framework radiomique
+
+> **Provenance :** notebook original de la compétition, disponible sur
+> [Kaggle](https://www.kaggle.com/code/jaouadelmorabit/radiogenomics-research).
 
 L'approche alternative interprétable (sections A–J décrites ci-dessous). C'est
 la source du notebook ; exécutez-le une fois sur le dataset pour régénérer les
