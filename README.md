@@ -4,18 +4,36 @@
 
 # Radiogenomics Analytics Framework
 
-**MRI → Radiomics → Genomic Prediction (MGMT Methylation)**
+**MRI → Radiomics / 3D CNN → Genomic Prediction (MGMT Methylation)**
 
-An end-to-end **radiogenomics pipeline** that predicts **MGMT promoter
-methylation status** in glioblastoma from multi-modal MRI — non-invasively,
-without biopsy. Built on the [RSNA-MICCAI Brain Tumor Radiogenomic
-Classification](https://www.kaggle.com/competitions/rsna-miccai-digital-pathology) dataset.
+Two complementary approaches to predict **MGMT promoter methylation status**
+in glioblastoma from multi-modal MRI — non-invasively, without biopsy. Built on
+the [RSNA-MICCAI Brain Tumor Radiogenomic
+Classification](https://www.kaggle.com/competitions/rsna-miccai-brain-tumor-radiogenomic-classification)
+dataset.
 
 > **What is radiogenomics?** An interdisciplinary field studying the statistical
 > associations between quantitative imaging features (**radiomics**) and the
 > genomic/molecular characteristics of tumors. MGMT promoter methylation is a key
 > prognostic biomarker: methylated tumors respond better to temozolomide
 > chemotherapy.
+
+## Key Results (3D CNN)
+
+> Predicting MGMT from MRI alone is famously hard — most models in the
+> literature stay near chance level (AUC 0.50–0.65).
+
+| Metric | Value |
+|---|---|
+| **Test AUC — ensemble of 5 models** | **≈ 0.64** |
+| Cross-validated AUC (5-fold, honest level) | 0.61 ± 0.04 |
+| Balanced accuracy (ensemble) | ≈ 0.60 |
+
+Methodology kept honest throughout: decision threshold tuned on validation
+only, test evaluated once, and cross-validation as the reliable estimate.
+A documented negative result (multi-modal stacking *degrades* performance due
+to unaligned modalities) and class weighting/threshold/augmentation ablations
+are included in the notebook.
 
 ---
 
@@ -64,11 +82,29 @@ sections:
 
 ```text
 .
-├── radiogenomics-research.ipynb   # Full pipeline notebook (sections A–J)
+├── jaouad-el-morabit.ipynb        # 3D CNN approach — professor's assignment (EXECUTED, results included)
+├── radiogenomics-research.ipynb   # Radiomics + classical ML framework (sections A–J)
 ├── Jaouad_El_Morabit.pdf          # Project report (French)
 ├── requirements.txt               # Python dependencies
 └── .gitignore
 ```
+
+## The Two Notebooks
+
+### 1. `jaouad-el-morabit.ipynb` — 3D CNN (executed ✅)
+
+Complete deep-learning pipeline in 18 sections: DICOM loading → 3D volumes →
+3D CNN → evaluation, with 5 optimizations tested one by one (class weighting,
+threshold tuning, best-slices + z-score normalization, data augmentation,
+5-fold cross-validation) plus two final levers (multi-modality fusion,
+ensembling). All cells executed on Kaggle with outputs and figures embedded.
+
+### 2. `radiogenomics-research.ipynb` — Radiomics framework
+
+The alternative interpretable approach (sections A–J described below). This
+is the notebook source; run it once against the dataset to regenerate outputs.
+
+### Radiomics pipeline detail
 
 ## Installation
 
@@ -106,6 +142,10 @@ class distribution, MRI modalities, preprocessing steps, ROI approximation,
 feature selection, radiogenomic association (volcano plot), modality fusion,
 model comparison, evaluation (ROC/confusion matrix), and an interpretation
 dashboard.
+
+The executed CNN notebook additionally embeds 7 figures (training curves,
+ROC, confusion matrices) and its full run is viewable on
+[Kaggle](https://www.kaggle.com/code/jaouadelmorabit/jaouad-el-morabit).
 
 ## Medical Disclaimer
 

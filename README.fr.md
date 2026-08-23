@@ -4,12 +4,12 @@
 
 # Radiogenomics Analytics Framework
 
-**IRM → Radiomique → Prédiction génomique (méthylation MGMT)**
+**IRM → Radiomique / CNN 3D → Prédiction génomique (méthylation MGMT)**
 
-Un pipeline **radiogénomique** de bout en bout qui prédit le **statut de
-méthylation du promoteur MGMT** dans le glioblastome à partir d'IRM
-multi-modales — sans biopsie invasive. Construit sur le jeu de données
-[RSNA-MICCAI Brain Tumor Radiogenomic Classification](https://www.kaggle.com/competitions/rsna-miccai-digital-pathology).
+Deux approches complémentaires pour prédire le **statut de méthylation du
+promoteur MGMT** dans le glioblastome à partir d'IRM multi-modales — sans
+biopsie invasive. Construit sur le jeu de données
+[RSNA-MICCAI Brain Tumor Radiogenomic Classification](https://www.kaggle.com/competitions/rsna-miccai-brain-tumor-radiogenomic-classification).
 
 > **Qu'est-ce que la radiogénomique ?** Un domaine interdisciplinaire qui étudie
 > les associations statistiques entre les caractéristiques d'imagerie
@@ -17,6 +17,23 @@ multi-modales — sans biopsie invasive. Construit sur le jeu de données
 > des tumeurs. La méthylation du promoteur MGMT est un biomarqueur pronostique
 > majeur : les tumeurs méthylées répondent mieux à la chimiothérapie par
 > témozolomide.
+
+## Résultats clés (CNN 3D)
+
+> Prédire MGMT à partir de l'IRM seule est réputé très difficile — dans la
+> littérature, la plupart des modèles restent proches du hasard (AUC 0,50–0,65).
+
+| Métrique | Valeur |
+|---|---|
+| **AUC test — ensemble de 5 modèles** | **≈ 0,64** |
+| AUC en validation croisée (5 blocs, niveau fiable) | 0,61 ± 0,04 |
+| Balanced accuracy (ensemble) | ≈ 0,60 |
+
+Démarche honnête tout au long : seuil réglé sur la validation uniquement, test
+évalué une seule fois, validation croisée comme estimation fiable. Un résultat
+négatif documenté (le multi-modalités *dégrade* les performances, modalités non
+recalées) et les ablations (pondération de classes / seuil / augmentation) sont
+détaillés dans le notebook.
 
 ---
 
@@ -67,11 +84,31 @@ séquentielles :
 
 ```text
 .
-├── radiogenomics-research.ipynb   # Notebook pipeline complet (sections A–J)
+├── jaouad-el-morabit.ipynb        # Approche CNN 3D — sujet du prof (EXÉCUTÉ, résultats inclus)
+├── radiogenomics-research.ipynb   # Framework radiomique + ML classique (sections A–J)
 ├── Jaouad_El_Morabit.pdf          # Rapport de projet (français)
 ├── requirements.txt               # Dépendances Python
 └── .gitignore
 ```
+
+## Les deux notebooks
+
+### 1. `jaouad-el-morabit.ipynb` — CNN 3D (exécuté ✅)
+
+Pipeline complet de deep learning en 18 sections : chargement DICOM → volumes
+3D → CNN 3D → évaluation, avec 5 optimisations testées une par une
+(pondération des classes, seuil de décision, meilleures coupes + z-score,
+augmentation de données, validation croisée 5 blocs) puis deux leviers finaux
+(fusion multi-modalités, ensembling). Toutes les cellules exécutées sur Kaggle,
+sorties et figures intégrées.
+
+### 2. `radiogenomics-research.ipynb` — Framework radiomique
+
+L'approche alternative interprétable (sections A–J décrites ci-dessous). C'est
+la source du notebook ; exécutez-le une fois sur le dataset pour régénérer les
+sorties.
+
+### Détail du pipeline radiomique
 
 ## Installation
 
@@ -108,6 +145,10 @@ des classes, modalités IRM, prétraitement, approximation du ROI, sélection de
 caractéristiques, association radiogénomique (volcano plot), fusion des
 modalités, comparaison des modèles, évaluation (ROC / matrice de confusion) et
 tableau de bord d'interprétation.
+
+Le notebook CNN exécuté contient en plus 7 figures intégrées (courbes
+d'entraînement, ROC, matrices de confusion) et son exécution complète est
+consultable sur [Kaggle](https://www.kaggle.com/code/jaouadelmorabit/jaouad-el-morabit).
 
 ## Avertissement médical
 
