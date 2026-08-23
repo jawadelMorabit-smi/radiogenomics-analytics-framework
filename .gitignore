@@ -1,6 +1,3 @@
-# Other students' submissions — never publish
-Resumé de TP2/
-Resumé de TP2.rar
 
 # Python
 __pycache__/
@@ -12,5 +9,4 @@ venv/
 # OS / editors
 .DS_Store
 Thumbs.db
-.claude/
 .vscode/
