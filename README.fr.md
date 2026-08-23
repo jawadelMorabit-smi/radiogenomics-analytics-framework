@@ -35,6 +35,20 @@ négatif documenté (le multi-modalités *dégrade* les performances, modalités
 recalées) et les ablations (pondération de classes / seuil / augmentation) sont
 détaillés dans le notebook.
 
+### Équilibre des classes & comportement à l'entraînement
+
+| | |
+|:---:|:---:|
+| ![Distribution des classes](figures/class_distribution.png) | ![Courbes d'entraînement](figures/training_curves.png) |
+| *Classes quasi équilibrées (52,5% / 47,5%)* | *Perte & AUC par époque — pas de sur-apprentissage marqué* |
+
+| | |
+|:---:|:---:|
+| ![Courbe ROC](figures/roc_curve.png) | |
+
+*ROC d'un modèle seul (AUC 0,59) — l'ensemble de 5 modèles porte l'AUC test à
+≈ 0,64.*
+
 ---
 
 ## Sommaire
@@ -87,9 +101,25 @@ séquentielles :
 ├── jaouad-el-morabit.ipynb        # Approche CNN 3D — sujet du prof (EXÉCUTÉ, résultats inclus)
 ├── radiogenomics-research.ipynb   # Framework radiomique + ML classique (sections A–J)
 ├── Jaouad_El_Morabit.pdf          # Rapport de projet (français)
+├── figures/                       # Figures extraites du notebook exécuté
 ├── requirements.txt               # Dépendances Python
 └── .gitignore
 ```
+
+## Aperçu des données et des résultats
+
+### Les quatre modalités IRM
+
+Coupes d'exemple d'un même patient, chargées depuis les DICOM dans le notebook :
+
+| FLAIR | T1w |
+|:---:|:---:|
+| ![Coupes FLAIR](figures/mri_flair_slices.png) | ![Coupes T1w](figures/mri_t1w_slices.png) |
+| **T1wCE** (tumeur en rehaussement annulaire visible) | **T2w** |
+| ![Tumeur T1wCE](figures/mri_t1wce_tumor.png) | ![Coupes T2w](figures/mri_t2w_slices.png) |
+
+*Le T1wCE met en évidence la lésion en rehaussement annulaire typique des
+gliomes de haut grade — la cible de la tâche de prédiction.*
 
 ## Les deux notebooks
 

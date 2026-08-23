@@ -35,6 +35,35 @@ A documented negative result (multi-modal stacking *degrades* performance due
 to unaligned modalities) and class weighting/threshold/augmentation ablations
 are included in the notebook.
 
+### Class balance & training behaviour
+
+| | |
+|:---:|:---:|
+| ![Class distribution](figures/class_distribution.png) | ![Training curves](figures/training_curves.png) |
+| *Class distribution — near-balanced (52.5% / 47.5%)* | *Loss & AUC across epochs — no severe overfitting* |
+
+| | |
+|:---:|:---:|
+| ![ROC curve](figures/roc_curve.png) | |
+
+*Single-model ROC (AUC 0.59) — the ensemble of 5 models pushes the test AUC
+to ≈ 0.64.*
+
+---
+
+### The four MRI modalities
+
+Sample slices from a single patient, as loaded from DICOM in the notebook:
+
+| FLAIR | T1w |
+|:---:|:---:|
+| ![FLAIR slices](figures/mri_flair_slices.png) | ![T1w slices](figures/mri_t1w_slices.png) |
+| **T1wCE** (ring-enhancing tumor visible) | **T2w** |
+| ![T1wCE tumor](figures/mri_t1wce_tumor.png) | ![T2w slices](figures/mri_t2w_slices.png) |
+
+*T1wCE highlights the ring-enhancing lesion typical of high-grade glioma —
+the target of the prediction task.*
+
 ---
 
 ## Table of Contents
