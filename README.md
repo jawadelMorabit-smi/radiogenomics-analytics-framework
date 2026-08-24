@@ -6,6 +6,8 @@
 
 **MRI → Radiomics / 3D CNN → Genomic Prediction (MGMT Methylation)**
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Dataset](https://img.shields.io/badge/dataset-RSNA--MICCAI-informational)
+
 Two complementary approaches to predict **MGMT promoter methylation status**
 in glioblastoma from multi-modal MRI — non-invasively, without biopsy. Built on
 the [RSNA-MICCAI Brain Tumor Radiogenomic
